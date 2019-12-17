@@ -1,0 +1,46 @@
+version: "~> 1.0"
+os: linux
+language: shell
+services: docker
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  slack:
+    if: branch = master
+    rooms:
+      secure: eWeGiSwWh6B8jC1sHxeclFIGQPEouWPVzP7CBrbjRXDQJaA840+G2T3kebNPRXGK019mmWa7WHTxEIcks5J4qm+dVi5VvMYW8Ua48emkMeheJu/2fQj8dgHFtgmIq4+5hiCXdXfZl6nCD8sOC+DXzT1zjT0NiUFC7zZ7rSJyjo7f6yIUpVKtzj17slofNYFkPJsx53yUamWRvQa3sFF0/Kss1q0qqAjHvX3snrhdybnTxTnzvjr66xYGZ7qoWJdj2trFiAwrYoZkgpJ50+OaMIX/tPBORiphkM7+EXfnaWsaoQ845Ps/Uxj6oQDvte3nZD2yDeOIcnHP4mDYM1sivBD6cWZvnHGkHGomH+2pLM06APlwcHYGlml3iMT2qCtE4+lyGakudv3xSr2VnvC53X92CDQTLNb7T51eMEuUEZyeO1/8X9trEi0E1bYmliU4piOG+7yXsXZRCo+XPyI4BR/rLEQfuOXbC9+gObRpUDlbYZx5PfJkZ7lro56Y2nPRm3t1MEhgNbvrPdf0596MI2SqrtDXMhcTp+3DZ7EeXLaqT2VNV4o/6D/giCHPyK/R9j14QStybJhCDrU53klsKKvsJyPRykf52/3ualhYSDG/p1UoBtH63dEVvGmGTpVdubIADqYCMqARXpdScrrxgnEaWDZO5ignQlb4LI8bcR0=
+    template:
+    - "%{commit_subject}"
+    - build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) @%{branch}
+    - by %{author} %{result} in %{duration}
+    on_success: change
+    on_failure: always
+env:
+  jobs:
+  - REPO='hello-world' TAG='latest' ORGANIZATION='ckaserer'
+  global:
+  - secure: R3J6kK1owIq/sNjF0PhI+tsN6Cg/98A5zWSRYUe7t2gtOimgJDw/k9wdeQDo5xk/3MzhDnScSq9zfZVSyDzunW3h/6gVHyhRX6G8A5qcdROILzoy3GMoYZUO0QZTHLAqZJdTcTNm8hH03gAg0IGXBQoEEo7jYBCD1C0+CIvRkgERFl+XrCo9Hmg8iLdl5p5jUfIwfwCwKCCksrFbLBfNAN/A07YU82Qb3FybkkJgyjmeeLeGe6cgcUEgKZQVVC64FpagoRSlE74xpdYdRetvtAlobSZ+q8WhCa55xbRLH/lTbr0mtMho/PtIXCk+6DZQ14Sg7timsVXwfjOfL2FgG+jIT0JCa9mBS6O2UU2rrBddk/SzpLyxHy+qSFE8zOnVgm3rUv1YudQtR609r0PqQhdbkOltQGt1WNYtz0RNi6KwDEjyW0eOa6WABxfzqgT+SfkFvomhfkwWD8i/K8cfCwL+ILhUw1yeV9Xu38geJqgxj2jyf/bIkp0MhCnA+gkCtRYdVqptSPlweJcaZ370cGjl+Wjdx6zb1vhFD9zJ0K6Buqkr5zWakGM7o2/5KnQnvoMJYfkjMtjf/DUVxSUFN3sd9ajvGXl9VPD3BrofsCsK97KwfTD6Xxojvd05pV6Y50cAtn5rVFj5oqtrGqhrXTVXY+zyRwBHrkE06A/9wx8=
+  - secure: X+QQbOOwSG+cODqwYiaMrkRb1f0xylRilhNG9KlgPaWTwRCDGqpOyng4kMcnSgHWAauEv5yiGxBOatI5nhvQ2BTp2bqRQN3yeh4fYVdivS8/vQsgpeOIg3aWRw9UwfFMNDW/HTJhPgVtdgEYK4aQK5bm97CO5kkQ+0uINoCI1nlB/biEij5d8l6FIxab/vHl59Uv0g0HhRanlUJbUGE9oCjZHnQneQPefSQLyvr7XZdqk4Zp4NKd1QYH2TBOOrnPHuCcHChPrbVWIHs+0G9FEI/q1AM+uU5HdL0cXqqovaB14Y3u8T3IaoQayb8h5K5IBdTlxn2alb+MnCLlQklWMyxML7YZQCfwxzplXeoSOj3dWpLVyHY75bOnBB56xWVgFJceHKvfJu/mS92R8kRS8opdRhJGI6ycIJQ/4TKPc3s7Ajc1859rRPrVwIhe8BTU4MMukrtoe6yR2pJlfoAKv8HJRjHE0fvnDTPxD+vyTw5nyJRnCHQ0PWffGn3V7s9+73pv9D+cj/1J5sh1uYvG1VP4Y0SjOFiefrYZcysRI9D/X2AlagkBcUdaBza2tvuUfoZ5RGDUW8HHNRsk/cbYqgUEgku7P4GsR32NzxcnKVyeaL6f338UAn8sywER0ct19WVgsW09/gsRpG9oGrjUFrMzu1A/sdkKOgArChFpELY=
+before_install:
+- |
+  curl -fsSL https://github.com/ckaserer/bash-script-collection/archive/master.zip > bash-script-collection.zip
+  unzip -j bash-script-collection.zip -d bash-script-collection
+  rm bash-script-collection.zip
+script:
+- |
+  set -ex
+  docker build -t ${ORGANIZATION}/${REPO}:${TAG} --no-cache .
+  docker run --rm -it ${ORGANIZATION}/${REPO}:${TAG}
+  set +ex
+deploy:
+  provider: script
+  script: bash ./bash-script-collection/docker-push-image.sh
+  skip_cleanup: true
+  on:
+    branch: master
+after_failure:
+- |
+  if [ "${TRAVIS_BRANCH}" == "master" ]; then
+    ./bash-script-collection/googlechat-send-notification.sh
+  fi

@@ -1,0 +1,3 @@
+.DS_Store
+.travis/config.yml
+.travis/travis.sh
