@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/ckaserer/docker-latex.svg?branch=master)](https://travis-ci.com/ckaserer/docker-latex)
 ![Docker Pulls](https://img.shields.io/docker/pulls/ckaserer/latex)
-![GitHub](https://img.shields.io/github/license/ckaserer/latex)
+![GitHub](https://img.shields.io/github/license/ckaserer/docker-latex)
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
 <br>
 <br>
