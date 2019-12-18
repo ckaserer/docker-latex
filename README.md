@@ -25,10 +25,10 @@ All versions are based on Debian: ([See all tags](https://hub.docker.com/r/ckase
 - [ckaserer/latex:basic - Dockerfile](https://raw.githubusercontent.com/ckaserer/docker-latex/master/Dockerfilel)<br> CTAN TexLive Scheme-basic
     - Up-to-date
     - only basic packages
-    - base for custom builds (500MB)
+    - base for custom builds (350MB)
 - [ckaserer/latex:full](https://raw.githubusercontent.com/ckaserer/docker-latex/master/Dockerfile)<br>CTAN TexLive Scheme-full
     - Up-to-date
-    - all packages (5.6GB)
+    - all packages (3.9GB)
 
 If you need
 
