@@ -9,7 +9,7 @@ notifications:
   slack:
     if: branch = master
     rooms:
-      secure: eWeGiSwWh6B8jC1sHxeclFIGQPEouWPVzP7CBrbjRXDQJaA840+G2T3kebNPRXGK019mmWa7WHTxEIcks5J4qm+dVi5VvMYW8Ua48emkMeheJu/2fQj8dgHFtgmIq4+5hiCXdXfZl6nCD8sOC+DXzT1zjT0NiUFC7zZ7rSJyjo7f6yIUpVKtzj17slofNYFkPJsx53yUamWRvQa3sFF0/Kss1q0qqAjHvX3snrhdybnTxTnzvjr66xYGZ7qoWJdj2trFiAwrYoZkgpJ50+OaMIX/tPBORiphkM7+EXfnaWsaoQ845Ps/Uxj6oQDvte3nZD2yDeOIcnHP4mDYM1sivBD6cWZvnHGkHGomH+2pLM06APlwcHYGlml3iMT2qCtE4+lyGakudv3xSr2VnvC53X92CDQTLNb7T51eMEuUEZyeO1/8X9trEi0E1bYmliU4piOG+7yXsXZRCo+XPyI4BR/rLEQfuOXbC9+gObRpUDlbYZx5PfJkZ7lro56Y2nPRm3t1MEhgNbvrPdf0596MI2SqrtDXMhcTp+3DZ7EeXLaqT2VNV4o/6D/giCHPyK/R9j14QStybJhCDrU53klsKKvsJyPRykf52/3ualhYSDG/p1UoBtH63dEVvGmGTpVdubIADqYCMqARXpdScrrxgnEaWDZO5ignQlb4LI8bcR0=
+      secure: M3zhWAroiCfsdhhKP3JH3BrkJodyVmJZ+RYnnSkVq7NjTU07ZDoS9Tkf6Aa4k+30OlYDlbNBE1jOsS1A2Z/OSoRa3pFYqy7K0F0mwvI1ygX3anh4AiWkDhODqCagftCIS3HWF9ddhT+a8qWfwam6zOwBJzdO4fM2QWe5sHhyYlLkLkzkJWogzdr+1XNzd9mhWqm2LZV6G5+Af/KFE2Hyhb8FfSBfrBjY4C5GLQ41htSQUib3Hs5mpt3m7Qhe5Qgc8oIeLefGAS+WAu8hhVbYgsYFrQzL1ObG2ZZDIFxp/cx/q799O8kAdIWw+OCxJLZIOtL2AA3hhHMEs7r9YYzyS1DELQErdrgGJ2nidTw8SZAuhcftilvx8VH1OvDYvubxfWMmAvDIpGHhFvh2jhactWBJbAiOBVQEH02NFhE+uEdFFEw8U6VpM6Jxpiy62MqCXVwgiG+yR7tXIf5NCFg7agaXwcdP1VhUPkH6loh9C8yQbu2qIUKUAkTz0nBqwuPBHqbM9Rzhv+MOEAkg25sSBnZjusZ5wT2JYfCADRzXa3e9djazIdFF6sqm8vvStJuOE+SxMhszhhszhEpMPBrZESp2UY7IgeZWgcChaMZvIFm7l4PdX3AqCYQXDPeMlzHJ7oxj3I+yoVTi3h+3/7M4fjLXlTZJwgCO3ixaGGbcMRI=
     template:
     - "%{commit_subject}"
     - build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) @%{branch}
@@ -18,10 +18,10 @@ notifications:
     on_failure: always
 env:
   jobs:
-  - REPO='hello-world' TAG='latest' ORGANIZATION='ckaserer'
+  - REPO='latex' ORGANIZATION='ckaserer'
   global:
-  - secure: R3J6kK1owIq/sNjF0PhI+tsN6Cg/98A5zWSRYUe7t2gtOimgJDw/k9wdeQDo5xk/3MzhDnScSq9zfZVSyDzunW3h/6gVHyhRX6G8A5qcdROILzoy3GMoYZUO0QZTHLAqZJdTcTNm8hH03gAg0IGXBQoEEo7jYBCD1C0+CIvRkgERFl+XrCo9Hmg8iLdl5p5jUfIwfwCwKCCksrFbLBfNAN/A07YU82Qb3FybkkJgyjmeeLeGe6cgcUEgKZQVVC64FpagoRSlE74xpdYdRetvtAlobSZ+q8WhCa55xbRLH/lTbr0mtMho/PtIXCk+6DZQ14Sg7timsVXwfjOfL2FgG+jIT0JCa9mBS6O2UU2rrBddk/SzpLyxHy+qSFE8zOnVgm3rUv1YudQtR609r0PqQhdbkOltQGt1WNYtz0RNi6KwDEjyW0eOa6WABxfzqgT+SfkFvomhfkwWD8i/K8cfCwL+ILhUw1yeV9Xu38geJqgxj2jyf/bIkp0MhCnA+gkCtRYdVqptSPlweJcaZ370cGjl+Wjdx6zb1vhFD9zJ0K6Buqkr5zWakGM7o2/5KnQnvoMJYfkjMtjf/DUVxSUFN3sd9ajvGXl9VPD3BrofsCsK97KwfTD6Xxojvd05pV6Y50cAtn5rVFj5oqtrGqhrXTVXY+zyRwBHrkE06A/9wx8=
-  - secure: X+QQbOOwSG+cODqwYiaMrkRb1f0xylRilhNG9KlgPaWTwRCDGqpOyng4kMcnSgHWAauEv5yiGxBOatI5nhvQ2BTp2bqRQN3yeh4fYVdivS8/vQsgpeOIg3aWRw9UwfFMNDW/HTJhPgVtdgEYK4aQK5bm97CO5kkQ+0uINoCI1nlB/biEij5d8l6FIxab/vHl59Uv0g0HhRanlUJbUGE9oCjZHnQneQPefSQLyvr7XZdqk4Zp4NKd1QYH2TBOOrnPHuCcHChPrbVWIHs+0G9FEI/q1AM+uU5HdL0cXqqovaB14Y3u8T3IaoQayb8h5K5IBdTlxn2alb+MnCLlQklWMyxML7YZQCfwxzplXeoSOj3dWpLVyHY75bOnBB56xWVgFJceHKvfJu/mS92R8kRS8opdRhJGI6ycIJQ/4TKPc3s7Ajc1859rRPrVwIhe8BTU4MMukrtoe6yR2pJlfoAKv8HJRjHE0fvnDTPxD+vyTw5nyJRnCHQ0PWffGn3V7s9+73pv9D+cj/1J5sh1uYvG1VP4Y0SjOFiefrYZcysRI9D/X2AlagkBcUdaBza2tvuUfoZ5RGDUW8HHNRsk/cbYqgUEgku7P4GsR32NzxcnKVyeaL6f338UAn8sywER0ct19WVgsW09/gsRpG9oGrjUFrMzu1A/sdkKOgArChFpELY=
+  - secure: Tf2ujXEaWNGU2kc94VAfL6Ujg9EQZdzOFtAe8uUvKCXlf+vJSWFK7T+r7jSzMbPpCRWna9YQ+JIv1ZGUQilas8jUZJg5sG8OrMk7QhqhFgmMnBdrVy9HOIQOKLbQfENnzpAL7PaZH+vBgXJRJD2Nb1u5TGI3UE91bi2pRvEaDRpJ4ZNhRYYUTJRpRd6IEW3UTwfYWA9Fu0tQHDxN/wCKpshgHSIp/ImclPd6mksP0LChTNV7c3sYxd9nQ/q5php5Td1qZh7sVkdQnk0w1pnViEAHg//R8U38W7lGklaqFujJvhfUxp1ru2BNbQTJLgWRqFoLWAyPsw9Qrdy2gBRItbBfRCJ1srICzpFLvwq8yuKF6lROrj/oYCypeq6Ao2G3snBN3yGL3ajiAkZclzCgSPTfQzCV9rT9EjCaamqnUFhc8nX6S6+IadzRQpGfNXG8g5m1N64m5lgOYJiHXCEbqWx1F9e26qEWm5EXuQvGfdnVvwMwla4j4avDxfLjsKPTXm9OjST29t5kd14nsj6hO4c2PXprOvi1T7PerClmANjhOqeYxjqO/Om1zQEOBkCW1QDth6MZoVJil+YbSXkqYCY6w7LJafc9jg+gfxjBD7gWQvwfX1t5u/6q9o7WfjXXM6JBARxlSJ/yxaaym93JUBP24F0BNDLEQ7e04vI/ZG4=
+  - secure: ZjR2jq5cLrqNUzCwYctrG2/fzCXbCQtoU96skZqC0QQDnLL2iSmqFv+SZX8Gl4+TR/T4RguvPzzhicS/R9jtTdNEFPEU6ccCB8svKroroKFKvR21b3tgY6VdNszQsFtjvJPcoWOMJynsktAZWrW9Qi9fDlML50PQLQipEWRH5OwV2PIwuEiJ4vlwHcV9ZqkrSrnUmXQkgDwlIWUMzw8t6iu1a8eErtoDtyLKpkAaAmRHm6Q3y3vGCRUErLvqRJBfl0SmjFNGv+w+MT9x/zg3jh/g2l7X0G/LGjYtIWSAT7titjzTAe/X+3LQe207pdN3R0uo+Bi9/CY0WponWEh3uhD6nJZeUYGiE2Kq5zzuy4GJUeT1Rb4ad3zF5H2CDSs4sCTmzSU45mLIv6vhHbnspUOAaPjuy6onglWTE1aUOYbDevK4k7rM53T9fL/Yjm6iHbFX0K9QuUUtPPpjUdY+WOaTM1bLs1tUzqmU113N3MSnMKSle9EaLnMWFF0s01o3SIknOf3stVAjN7QRNf7wTSrVXemKKo03lrA51Sygthn/7ce9eBCFR9KwwF8iM1aTsqcv6MnAPEurbkZBAjRsjaUOdhcU3eFyLpVB0aPJ/om7YDeJUSl6ySX3bY+iYbb5GGK6FfnB3TULRoesazM2ze39OFLK+aK9jDa1vYQnEjM=
 before_install:
 - |
   curl -fsSL https://github.com/ckaserer/bash-script-collection/archive/master.zip > bash-script-collection.zip
@@ -30,8 +30,10 @@ before_install:
 script:
 - |
   set -ex
-  docker build -t ${ORGANIZATION}/${REPO}:${TAG} --no-cache .
-  docker run --rm -it ${ORGANIZATION}/${REPO}:${TAG}
+  docker build -t ${ORGANIZATION}/${REPO}:basic --no-cache --target basic .
+  docker build -t ${ORGANIZATION}/${REPO}:full --target full .
+  docker run --rm -it ${ORGANIZATION}/${REPO}:basic tlmgr list --only-installed
+  docker run --rm -it ${ORGANIZATION}/${REPO}:full tlmgr list --only-installed
   set +ex
 deploy:
   provider: script
@@ -39,8 +41,3 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
-after_failure:
-- |
-  if [ "${TRAVIS_BRANCH}" == "master" ]; then
-    ./bash-script-collection/googlechat-send-notification.sh
-  fi

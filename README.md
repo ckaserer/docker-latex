@@ -1,83 +1,75 @@
-[![Build Status](https://travis-ci.com/ckaserer/docker-template.svg?branch=master)](https://travis-ci.com/ckaserer/docker-template)
-![Docker Pulls](https://img.shields.io/docker/pulls/ckaserer/hello-world)
-![GitHub](https://img.shields.io/github/license/ckaserer/docker-template)
+[![Build Status](https://travis-ci.com/ckaserer/docker-latex.svg?branch=master)](https://travis-ci.com/ckaserer/docker-latex)
+![Docker Pulls](https://img.shields.io/docker/pulls/ckaserer/latex)
+![GitHub](https://img.shields.io/github/license/ckaserer/latex)
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
 <br>
 <br>
 
-# docker-template
+# docker-latex
 
-CentOS 7 container image with ...
+This container helps compiling latex sources without the need to install all latex packages on your system.
+
+## Why should I use this container?
+
+- Easy setup, compile immediately after image download
+- Preserves UID and GID of local user
+- Use container like local command: `docker-latex pdflatex main.tex`
+- Multiple versions to fit your need
 
 ---
 
-# Getting started
+## Versions
 
-1) Create a new repository and use this repo as **template**
-2) Update the badge links in `README.md`
-3) add docker credentials to be able to push your image to dockerhub
-4) add build notifications (slack and/or google hangout)
-5) remove the "Getting started" section in `README.md`
-6) write your own Dockerfile and enjoy CI and notifications
+All versions are based on Debian: ([See all tags](https://hub.docker.com/r/ckaserer/latex/))
 
-## Add docker credentials
+- [ckaserer/latex:basic - Dockerfile](https://raw.githubusercontent.com/ckaserer/docker-latex/master/Dockerfilel)<br> CTAN TexLive Scheme-basic
+    - Up-to-date
+    - only basic packages
+    - base for custom builds (500MB)
+- [ckaserer/latex:full](https://raw.githubusercontent.com/ckaserer/docker-latex/master/Dockerfile)<br>CTAN TexLive Scheme-full
+    - Up-to-date
+    - all packages (5.6GB)
 
-1) use ckaserer/docker-travis-cli to encrypt your docker credentials
+If you need
 
-```
-git clone https://github.com/ckaserer/docker-travis-cli.git
-source docker-travis-cli/bashrc
-add-docker-credentials "dockerUsername"
-```
+- it to just work, go for `ckaserer/latex:full`
+- a texlive base installation to build your custom image from, go for `ckaserer/latex:basic`
 
-or run following command directly 
-
-```
-docker run --rm -i -e TZ=Europe/Vienna -v $(pwd):/root -w=/root ckaserer/travis-cli add-docker-credentials "dockerUsername"
-```
-
-## How to set up slack notifications
-
-1) login to https://team-gepardec.slack.com/
-2) go to https://team-gepardec.slack.com/apps/A0F81FP4N-travis-ci
-3) Click add to slack
-4) Choose channel #travis
-5) Click "Add Travis Integration"
-6) Customize the name and icon for integration e.g. your repo name "docker-template" + icon of the key technology in this case "docker"
-7) on top you will find setup instructions. You can't just copy and paste them!
-8) use ckaserer/docker-travis-cli to encrypt your slack token
+## Getting started
 
 ```
 git clone https://github.com/ckaserer/docker-travis-cli.git
 source docker-travis-cli/bashrc
-add-slack-token "workspace:myToken"
+
+docker-latex pdflatex main.tex
+
+# Or use latexmk (best option)
+docker-latex pdflatex latexmk -cd -f -interaction=batchmode -pdf main.tex
+
+# Or make multiple passes (does not start container twice)
+docker-latex /bin/sh -c "pdflatex main.tex && pdflatex main.tex"
 ```
 
-or run following command directly
+## Customize
+
+If packages are missing, extend the base image to your liking.
+
+1) Create a Dockerfile
 
 ```
-docker run --rm -i -e TZ=Europe/Vienna -v $(pwd):/root -w=/root ckaserer/travis-cli add-slack-token "workspace:myToken"
+FROM ckaserer/latex:basic
+
+# Minted + Pygments
+RUN tlmgr install minted
 ```
 
-## How to set up google chat notifications
-
-1) open google chat
-2) open the room that you would like to add notifications too (e.g. Builds)
-3) click on the Dropdown next to the name of the room
-4) click on "Configure webhooks"
-5) Set a name (preferably the repo slug) and an avatar url
-6) Click "Save"
-6) Copy the webhook url
-7) use ckaserer/docker-travis-cli to encrypt your slack token 
-
-```
-git clone https://github.com/ckaserer/docker-travis-cli.git
-source docker-travis-cli/bashrc
-add-googlechat-webhook "myWebhookUrl"
+2) Build your custom image
+```bash
+docker build -t mycustomlateximg .
 ```
 
-or run following command directly
+3) Edit `bashrc` to use your image `mycustomlateximg`.
 
-```
-docker run --rm -i -e TZ=Europe/Vienna -v $(pwd):/root -w=/root ckaserer/travis-cli add-googlechat-webhook "myWebhookUrl"
-```
+A list of available ctan packages can be found here
+
+- [http://mirror.ctan.org/systems/texlive/tlnet/archive](http://mirror.ctan.org/systems/texlive/tlnet/archive)
