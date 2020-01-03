@@ -22,11 +22,14 @@ env:
   - secure: ZjR2jq5cLrqNUzCwYctrG2/fzCXbCQtoU96skZqC0QQDnLL2iSmqFv+SZX8Gl4+TR/T4RguvPzzhicS/R9jtTdNEFPEU6ccCB8svKroroKFKvR21b3tgY6VdNszQsFtjvJPcoWOMJynsktAZWrW9Qi9fDlML50PQLQipEWRH5OwV2PIwuEiJ4vlwHcV9ZqkrSrnUmXQkgDwlIWUMzw8t6iu1a8eErtoDtyLKpkAaAmRHm6Q3y3vGCRUErLvqRJBfl0SmjFNGv+w+MT9x/zg3jh/g2l7X0G/LGjYtIWSAT7titjzTAe/X+3LQe207pdN3R0uo+Bi9/CY0WponWEh3uhD6nJZeUYGiE2Kq5zzuy4GJUeT1Rb4ad3zF5H2CDSs4sCTmzSU45mLIv6vhHbnspUOAaPjuy6onglWTE1aUOYbDevK4k7rM53T9fL/Yjm6iHbFX0K9QuUUtPPpjUdY+WOaTM1bLs1tUzqmU113N3MSnMKSle9EaLnMWFF0s01o3SIknOf3stVAjN7QRNf7wTSrVXemKKo03lrA51Sygthn/7ce9eBCFR9KwwF8iM1aTsqcv6MnAPEurbkZBAjRsjaUOdhcU3eFyLpVB0aPJ/om7YDeJUSl6ySX3bY+iYbb5GGK6FfnB3TULRoesazM2ze39OFLK+aK9jDa1vYQnEjM=
 before_install:
 - |
-  curl -fsSL https://github.com/ckaserer/bash-script-collection/archive/master.zip > bash-script-collection.zip
-  dest=bash-script-collection
-  unzip bash-script-collection-master.zip -d ${dest} && f=("${dest}"/*) && mv "${dest}"/*/* "${dest}" && rmdir "${f[@]}"
-  rm bash-script-collection.zip
-  ls -alh bash-script-collection/*
+  export script_repo=bash-script-collection
+  curl -fsSL https://github.com/ckaserer/${script_repo}/archive/master.zip > ${script_repo}.zip
+  unzip ${script_repo}.zip -d ${script_repo} && \
+    f=("${script_repo}"/*) && \
+    mv "${script_repo}"/*/* "${script_repo}" && \
+    rmdir "${f[@]}" && \
+    rm ${script_repo}.zip
+  ls -alh ${script_repo}/*
 script:
 - |
   source bashrc
