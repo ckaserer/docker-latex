@@ -24,7 +24,11 @@ RUN mkdir /opt/texlive && \
 	/opt/texlive/install-tl \
         -profile /opt/texlive/texlive.profile && \
     rm -rf /opt/texlive && \
-    ln -s /usr/local/texlive/$(date +"%Y")/bin/x86_64-linux /usr/local/texlive/bin
+    if [ -d "/usr/local/texlive/$(date +'%Y')" ]; then \
+        ln -s /usr/local/texlive/$(date +'%Y')/bin/x86_64-linux /usr/local/texlive/bin; \
+    else \
+        ln -s /usr/local/texlive/$(date --date="$(date +%Y-%m-15) -1 year" +'%Y')/bin/x86_64-linux /usr/local/texlive/bin; \
+    fi
 
 ENV PATH=${PATH}:/usr/local/texlive/bin/ \
     HOME=/data
