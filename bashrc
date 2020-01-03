@@ -20,8 +20,7 @@ readonly -f docker-latex-basic
 
 # docker-latex-build
 function docker-latex-build () {
-  docker-latex-build-basic
-  local command="docker build -t ckaserer/latex:full --target full ${DOCKER_LATEX_HOME}"
+  local command="docker build -t ckaserer/latex:full --target full $@ ${DOCKER_LATEX_HOME}"
   echo "+ ${command}" && ${command}
 }
 readonly -f docker-latex-build
@@ -29,7 +28,7 @@ readonly -f docker-latex-build
 
 # docker-latex-build-basic
 function docker-latex-build-basic () {
-  local command="docker build -t ckaserer/latex:basic --no-cache --target basic ${DOCKER_LATEX_HOME}"
+  local command="docker build -t ckaserer/latex:basic --target basic $@ ${DOCKER_LATEX_HOME}"
   echo "+ ${command}" && ${command}
 }
 readonly -f docker-latex-build-basic
