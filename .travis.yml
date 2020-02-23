@@ -24,11 +24,10 @@ before_install: curl -sSL https://raw.githubusercontent.com/ckaserer/bash-script
 script: .ci/test.sh
 deploy:
   provider: script
-  script: bash bash-script-collection/docker-push-image.sh \
-            --docker-org  ckaserer \
-            --docker-repo latex \
-            --docker-user ${DOCKER_USER} \
-            --docker-pass ${DOCKER_PASS}
+  script: bash bash-script-collection/container-image-push.sh \
+    --image ckaserer/latex \
+    --username ${DOCKER_USER} \
+    --password ${DOCKER_PASS}
   skip_cleanup: true
   on:
     branch: master
