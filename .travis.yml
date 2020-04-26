@@ -16,18 +16,4 @@ notifications:
     - by %{author} %{result} in %{duration}
     on_success: change
     on_failure: always
-env:
-  global:
-  - secure: Tf2ujXEaWNGU2kc94VAfL6Ujg9EQZdzOFtAe8uUvKCXlf+vJSWFK7T+r7jSzMbPpCRWna9YQ+JIv1ZGUQilas8jUZJg5sG8OrMk7QhqhFgmMnBdrVy9HOIQOKLbQfENnzpAL7PaZH+vBgXJRJD2Nb1u5TGI3UE91bi2pRvEaDRpJ4ZNhRYYUTJRpRd6IEW3UTwfYWA9Fu0tQHDxN/wCKpshgHSIp/ImclPd6mksP0LChTNV7c3sYxd9nQ/q5php5Td1qZh7sVkdQnk0w1pnViEAHg//R8U38W7lGklaqFujJvhfUxp1ru2BNbQTJLgWRqFoLWAyPsw9Qrdy2gBRItbBfRCJ1srICzpFLvwq8yuKF6lROrj/oYCypeq6Ao2G3snBN3yGL3ajiAkZclzCgSPTfQzCV9rT9EjCaamqnUFhc8nX6S6+IadzRQpGfNXG8g5m1N64m5lgOYJiHXCEbqWx1F9e26qEWm5EXuQvGfdnVvwMwla4j4avDxfLjsKPTXm9OjST29t5kd14nsj6hO4c2PXprOvi1T7PerClmANjhOqeYxjqO/Om1zQEOBkCW1QDth6MZoVJil+YbSXkqYCY6w7LJafc9jg+gfxjBD7gWQvwfX1t5u/6q9o7WfjXXM6JBARxlSJ/yxaaym93JUBP24F0BNDLEQ7e04vI/ZG4=
-  - secure: ZjR2jq5cLrqNUzCwYctrG2/fzCXbCQtoU96skZqC0QQDnLL2iSmqFv+SZX8Gl4+TR/T4RguvPzzhicS/R9jtTdNEFPEU6ccCB8svKroroKFKvR21b3tgY6VdNszQsFtjvJPcoWOMJynsktAZWrW9Qi9fDlML50PQLQipEWRH5OwV2PIwuEiJ4vlwHcV9ZqkrSrnUmXQkgDwlIWUMzw8t6iu1a8eErtoDtyLKpkAaAmRHm6Q3y3vGCRUErLvqRJBfl0SmjFNGv+w+MT9x/zg3jh/g2l7X0G/LGjYtIWSAT7titjzTAe/X+3LQe207pdN3R0uo+Bi9/CY0WponWEh3uhD6nJZeUYGiE2Kq5zzuy4GJUeT1Rb4ad3zF5H2CDSs4sCTmzSU45mLIv6vhHbnspUOAaPjuy6onglWTE1aUOYbDevK4k7rM53T9fL/Yjm6iHbFX0K9QuUUtPPpjUdY+WOaTM1bLs1tUzqmU113N3MSnMKSle9EaLnMWFF0s01o3SIknOf3stVAjN7QRNf7wTSrVXemKKo03lrA51Sygthn/7ce9eBCFR9KwwF8iM1aTsqcv6MnAPEurbkZBAjRsjaUOdhcU3eFyLpVB0aPJ/om7YDeJUSl6ySX3bY+iYbb5GGK6FfnB3TULRoesazM2ze39OFLK+aK9jDa1vYQnEjM=
-before_install: curl -sSL https://raw.githubusercontent.com/ckaserer/bash-script-collection/master/bash-fetch-script-collection.sh | bash
 script: .ci/test.sh
-deploy:
-  provider: script
-  script: bash bash-script-collection/container-image-push.sh \
-    --image ckaserer/latex \
-    --username ${DOCKER_USER} \
-    --password ${DOCKER_PASS}
-  skip_cleanup: true
-  on:
-    branch: master

@@ -1,4 +1,4 @@
-FROM debian:10 as basic
+FROM debian:10
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -13,14 +13,20 @@ RUN apt-get update -q && \
     pip install \
         pygments 
 
+ARG SCHEME_FULL=false
 RUN mkdir /opt/texlive && \
     wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
         -P /opt/texlive && \
     tar -xvf /opt/texlive/install-tl-unx.tar.gz \
         -C /opt/texlive \
         --strip-components=1 && \ 
-    echo "selected_scheme scheme-basic" \
-        >> /opt/texlive/texlive.profile && \
+    if [ "${SCHEME_FULL}" = true ]; then \
+      echo "selected_scheme scheme-full" \
+        >> /opt/texlive/texlive.profile; \
+    else \
+      echo "selected_scheme scheme-basic" \
+        >> /opt/texlive/texlive.profile; \
+    fi && \
 	/opt/texlive/install-tl \
         -profile /opt/texlive/texlive.profile && \
     rm -rf /opt/texlive && \
@@ -39,8 +45,3 @@ RUN tlmgr install \
         minted
 
 VOLUME ["/data"]
-
-FROM basic as full
-
-RUN tlmgr install \
-        scheme-full
