@@ -13,20 +13,15 @@ RUN apt-get update -q && \
     pip install \
         pygments 
 
-ARG SCHEME_FULL=false
+ARG SCHEME="scheme-full"
 RUN mkdir /opt/texlive && \
     wget -q http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz \
         -P /opt/texlive && \
     tar -xvf /opt/texlive/install-tl-unx.tar.gz \
         -C /opt/texlive \
         --strip-components=1 && \ 
-    if [ "${SCHEME_FULL}" = true ]; then \
-      echo "selected_scheme scheme-full" \
-        >> /opt/texlive/texlive.profile; \
-    else \
-      echo "selected_scheme scheme-basic" \
-        >> /opt/texlive/texlive.profile; \
-    fi && \
+    echo "selected_scheme ${SCHEME}" \
+        >> /opt/texlive/texlive.profile && \
 	/opt/texlive/install-tl \
         -profile /opt/texlive/texlive.profile && \
     rm -rf /opt/texlive && \
