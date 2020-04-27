@@ -4,7 +4,7 @@ readonly DOCKER_LATEX_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 # docker-latex
 function docker-latex () {
-  local command="docker run --rm -it -e TZ=Europe/Vienna -v $(pwd):/root -w=/root ckaserer/latex:full"
+  local command="docker run --rm -it -e TZ=Europe/Vienna -v $(pwd):/root -w=/root ckaserer/latex:latest"
   echo "+ ${command} $@" && ${command} $@
 }
 readonly -f docker-latex
@@ -20,7 +20,7 @@ readonly -f docker-latex-basic
 
 # docker-latex-build
 function docker-latex-build () {
-  local command="docker build -t ckaserer/latex:full $@ ${DOCKER_LATEX_HOME}"
+  local command="docker build -t ckaserer/latex:latest $@ ${DOCKER_LATEX_HOME}"
   echo "+ ${command}" && ${command}
 }
 readonly -f docker-latex-build
